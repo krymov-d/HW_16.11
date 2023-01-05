@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HW_16.11</string>
+
+    <string name="_0">0</string>
+    <string name="kz">Казахстан</string>
+    <string name="kz_currency">Тенге</string>
+    <string name="usa">США</string>
+    <string name="usa_currency">Доллары</string>
+    <string name="tr">Турция</string>
+    <string name="tr_currency">Лира</string>
+    <string name="eu">EC</string>
+    <string name="eu_currency">Евро</string>
+    <string name="flag">flag</string>
+    <string name="add">Добавить</string>
+</resources>
