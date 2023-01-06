@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         currency.add(
             Currency(
                 amount = "1",
-                R.drawable.ic_kz,
-                getString(R.string.kz),
+                flag = R.drawable.ic_kz,
+                country = getString(R.string.kz),
                 currencyName = getString(R.string.kz_currency)
             )
         )
