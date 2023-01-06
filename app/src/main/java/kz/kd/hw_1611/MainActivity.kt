@@ -27,11 +27,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun fillCurrency() {
         val currency = mutableListOf<Currency>()
-        currency.add(Currency(amount = "1500000", R.drawable.ic_kz, getString(R.string.kz), currencyName = getString(R.string.kz_currency)))
+        currency.add(Currency(amount = "1", R.drawable.ic_kz, getString(R.string.kz), currencyName = getString(R.string.kz_currency)))
         currency.add(Currency(flag = R.drawable.ic_usa, country = getString(R.string.usa), currencyName = getString(R.string.usa_currency)))
-        currency.add(Currency(amount = "23450", flag = R.drawable.ic_tr, country = getString(R.string.tr), currencyName = getString(R.string.tr_currency)))
-        currency.add(Currency(amount = "888", flag = R.drawable.ic_eu, country = getString(R.string.eu), currencyName = getString(R.string.eu_currency)))
-        currency.add(Currency(amount = "777", flag = R.drawable.ic_usa, country = getString(R.string.usa), currencyName = getString(R.string.usa_currency)))
+        currency.add(Currency(amount = "3", flag = R.drawable.ic_tr, country = getString(R.string.tr), currencyName = getString(R.string.tr_currency)))
+        currency.add(Currency(amount = "4", flag = R.drawable.ic_eu, country = getString(R.string.eu), currencyName = getString(R.string.eu_currency)))
+        currency.add(Currency(amount = "5", flag = R.drawable.ic_usa, country = getString(R.string.usa), currencyName = getString(R.string.usa_currency)))
+        currency.add(Currency(amount = "6", R.drawable.ic_kz, getString(R.string.kz), currencyName = getString(R.string.kz_currency)))
+        currency.add(Currency(flag = R.drawable.ic_usa, country = getString(R.string.usa), currencyName = getString(R.string.usa_currency)))
+        currency.add(Currency(amount = "8", flag = R.drawable.ic_tr, country = getString(R.string.tr), currencyName = getString(R.string.tr_currency)))
+        currency.add(Currency(amount = "9", flag = R.drawable.ic_eu, country = getString(R.string.eu), currencyName = getString(R.string.eu_currency)))
+        currency.add(Currency(amount = "10", flag = R.drawable.ic_usa, country = getString(R.string.usa), currencyName = getString(R.string.usa_currency)))
         currencyAdapter.updateDataSet(currency)
     }
 }

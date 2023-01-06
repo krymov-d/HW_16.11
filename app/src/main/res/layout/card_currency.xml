@@ -42,6 +42,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/img_flag_bg"
         android:contentDescription="@string/flag"
+        android:padding="1dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/tv_country"
         app:layout_constraintEnd_toEndOf="parent"
