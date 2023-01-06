@@ -39,14 +39,14 @@
         android:id="@+id/iv_flag"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/img_flag_bg"
         android:contentDescription="@string/flag"
         android:padding="1dp"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@id/tv_country"
+        app:layout_constraintBottom_toBottomOf="@id/et_l_amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/et_l_amount"
+        app:layout_constraintVertical_bias="1"
         tools:src="@drawable/ic_usa" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_flag"
+        app:layout_constraintTop_toBottomOf="@id/et_l_amount"
         tools:text="@string/usa" />
 
 
