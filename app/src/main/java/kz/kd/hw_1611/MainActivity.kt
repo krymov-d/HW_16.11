@@ -17,12 +17,20 @@ class MainActivity : AppCompatActivity() {
         fillCurrency()
     }
 
+
+
     private fun initCurrencyRecycler() {
         currencyAdapter = CurrencyAdapter(layoutInflater)
         val currencyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val rvCurrency: RecyclerView = findViewById(R.id.rv_currency)
         rvCurrency.layoutManager = currencyLayoutManager
         rvCurrency.adapter = currencyAdapter
+        smoothScroll(rvCurrency)
+    }
+
+    private fun smoothScroll(recyclerView: RecyclerView) {
+        val btnPosition = currencyAdapter.itemCount
+        recyclerView.smoothScrollToPosition(btnPosition)
     }
 
     private fun fillCurrency() {
