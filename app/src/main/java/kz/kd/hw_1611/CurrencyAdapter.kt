@@ -3,6 +3,7 @@ package kz.kd.hw_1611
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
 class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
@@ -36,6 +37,11 @@ class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
         if (holder is CurrencyViewHolder) {
             val currency = currencyList[position]
             holder.bind(currency)
+        } else if (holder is BtnAddViewHolder) {
+            val btnAdd: Button = holder.itemView.findViewById(R.id.btn_add)
+            btnAdd.setOnClickListener {
+                btnAddClicked(position)
+            }
         }
     }
 
@@ -50,4 +56,17 @@ class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun btnAddClicked(position: Int) {
+        val currentSize = currencyList.size + 1
+        val currency = Currency(
+            amount = currentSize.toString(),
+            flag = R.drawable.ic_rus,
+            country = "Россия",
+            currencyName = "Рубль"
+        )
+        currencyList.add(position, currency)
+        notifyItemInserted(position)
+        notifyDataSetChanged()
+    }
 }

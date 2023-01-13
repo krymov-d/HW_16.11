@@ -10,6 +10,8 @@
     <string name="tr_currency">Лира</string>
     <string name="eu">EC</string>
     <string name="eu_currency">Евро</string>
+    <string name="rus">Россия</string>
+    <string name="rus_currency">Рубль</string>
     <string name="flag">flag</string>
     <string name="add">Добавить</string>
 </resources>
