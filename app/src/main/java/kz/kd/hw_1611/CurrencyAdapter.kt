@@ -67,6 +67,6 @@ class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
         )
         currencyList.add(position, currency)
         notifyItemInserted(position)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(position, currentSize)
     }
 }
