@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.eu_currency)
             )
         )
-        /*
         currencyList.add(
             Currency(
                 amount = "5",
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.usa_currency)
             )
         )
+        /*
         currencyList.add(
             Currency(
                 amount = "8",
@@ -187,8 +187,7 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.usa_currency)
             )
         )
-
-         */
+        */
         currencyAdapter.updateDataSet(currencyList)
     }
 }
