@@ -22,7 +22,7 @@
         app:boxStrokeWidthFocused="1dp"
         app:hintTextColor="@color/btn_text_color"
         app:layout_constraintBottom_toTopOf="@id/tv_country"
-        app:layout_constraintEnd_toStartOf="@id/iv_flag"
+        app:layout_constraintEnd_toStartOf="@id/cv_flag"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,19 +35,30 @@
             tools:hint="@string/usa_currency" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/iv_flag"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:background="@drawable/img_flag_bg"
-        android:contentDescription="@string/flag"
-        android:padding="1dp"
-        android:scaleType="centerInside"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/btn_background"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="@id/et_l_amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/et_l_amount"
-        app:layout_constraintVertical_bias="1"
-        tools:src="@drawable/ic_usa" />
+        app:layout_constraintVertical_bias="1">
+
+        <ImageView
+            android:id="@+id/iv_flag"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/img_flag_bg"
+            android:contentDescription="@string/flag"
+            android:padding="1dp"
+            android:scaleType="centerInside"
+            tools:src="@drawable/ic_usa" />
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/tv_country"
