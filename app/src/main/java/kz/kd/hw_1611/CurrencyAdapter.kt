@@ -6,9 +6,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
-class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
+class CurrencyAdapter(
+    private val layoutInflater: LayoutInflater,
+    private val listener: BtnAddClickListener
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val currencyList: MutableList<Currency> = mutableListOf()
+
+    interface BtnAddClickListener {
+        fun bntAddClicked()
+    }
 
     override fun getItemViewType(position: Int): Int {
         return if (position == currencyList.size) {
@@ -40,7 +47,8 @@ class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
         } else if (holder is BtnAddViewHolder) {
             val btnAdd: Button = holder.itemView.findViewById(R.id.btn_add)
             btnAdd.setOnClickListener {
-                btnAddClicked(position)
+                listener.bntAddClicked()
+                newCurrencyAdded(position)
             }
         }
     }
@@ -57,16 +65,16 @@ class CurrencyAdapter(private val layoutInflater: LayoutInflater) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun btnAddClicked(position: Int) {
-        val currentSize = currencyList.size + 1
-        val currency = Currency(
-            amount = currentSize.toString(),
+    private fun newCurrencyAdded(position: Int) {
+        val newCurrencyListSize = currencyList.size + 1
+        val newCurrency = Currency(
+            amount = newCurrencyListSize.toString(),
             flag = R.drawable.ic_rus,
             country = "Россия",
             currencyName = "Рубль"
         )
-        currencyList.add(position, currency)
+        currencyList.add(position, newCurrency)
         notifyItemInserted(position)
-        notifyItemRangeChanged(position, currentSize)
+        notifyItemRangeChanged(position, newCurrencyListSize)
     }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var currencyAdapter: CurrencyAdapter
+    private lateinit var currencyLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,20 +18,17 @@ class MainActivity : AppCompatActivity() {
         fillCurrency()
     }
 
-
-
     private fun initCurrencyRecycler() {
-        currencyAdapter = CurrencyAdapter(layoutInflater)
-        val currencyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        currencyAdapter =
+            CurrencyAdapter(layoutInflater, object : CurrencyAdapter.BtnAddClickListener {
+                override fun bntAddClicked() {
+                    currencyLayoutManager.scrollToPosition(currencyAdapter.itemCount)
+                }
+            })
+        currencyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val rvCurrency: RecyclerView = findViewById(R.id.rv_currency)
         rvCurrency.layoutManager = currencyLayoutManager
         rvCurrency.adapter = currencyAdapter
-        smoothScroll(rvCurrency)
-    }
-
-    private fun smoothScroll(recyclerView: RecyclerView) {
-        val btnPosition = currencyAdapter.itemCount
-        recyclerView.smoothScrollToPosition(btnPosition)
     }
 
     private fun fillCurrency() {
@@ -66,136 +64,6 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.eu_currency)
             )
         )
-        currencyList.add(
-            Currency(
-                amount = "5",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "6",
-                flag = R.drawable.ic_kz,
-                country = getString(R.string.kz),
-                currencyName = getString(R.string.kz_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "7",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        /*
-        currencyList.add(
-            Currency(
-                amount = "8",
-                flag = R.drawable.ic_tr,
-                country = getString(R.string.tr),
-                currencyName = getString(R.string.tr_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "9",
-                flag = R.drawable.ic_eu,
-                country = getString(R.string.eu),
-                currencyName = getString(R.string.eu_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "10",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "11",
-                flag = R.drawable.ic_kz,
-                country = getString(R.string.kz),
-                currencyName = getString(R.string.kz_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "12",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "13",
-                flag = R.drawable.ic_tr,
-                country = getString(R.string.tr),
-                currencyName = getString(R.string.tr_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "14",
-                flag = R.drawable.ic_eu,
-                country = getString(R.string.eu),
-                currencyName = getString(R.string.eu_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "15",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "16",
-                flag = R.drawable.ic_kz,
-                country = getString(R.string.kz),
-                currencyName = getString(R.string.kz_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "17",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "18",
-                flag = R.drawable.ic_tr,
-                country = getString(R.string.tr),
-                currencyName = getString(R.string.tr_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "19",
-                flag = R.drawable.ic_eu,
-                country = getString(R.string.eu),
-                currencyName = getString(R.string.eu_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "20",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        */
         currencyAdapter.updateDataSet(currencyList)
     }
 }
