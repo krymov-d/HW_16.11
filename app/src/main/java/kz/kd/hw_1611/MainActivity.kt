@@ -1,8 +1,9 @@
 package kz.kd.hw_1611
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -61,6 +62,15 @@ class MainActivity : AppCompatActivity() {
         val rvCurrency: RecyclerView = findViewById(R.id.rv_currency)
         rvCurrency.layoutManager = currencyLayoutManager
         rvCurrency.adapter = currencyAdapter
+
+        val dividerItemDecoration = DividerItemDecoration(this, currencyLayoutManager.orientation)
+        dividerItemDecoration.setDrawable(
+            AppCompatResources.getDrawable(
+                this,
+                R.drawable.divider_bg
+            )!!
+        )
+        rvCurrency.addItemDecoration(dividerItemDecoration)
     }
 
     private fun fillCurrency() {
@@ -144,6 +154,16 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.usa_currency)
             )
         )
+        /*
+        val currentCurrencyList = currencyAdapter.getCurrencyList()
+        if (currencyList.size == currentCurrencyList.size) {
+            currencyAdapter.updateDataSet(currencyList)
+        }
+        else {
+            currencyAdapter.updateDataSet(currentCurrencyList)
+        }
+
+         */
         currencyAdapter.updateDataSet(currencyList)
     }
 }

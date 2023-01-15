@@ -64,6 +64,12 @@ class CurrencyAdapter(
         notifyDataSetChanged()
     }
 
+    /*
+    fun getCurrencyList(): MutableList<Currency> {
+        return currencyList
+    }
+     */
+
     @SuppressLint("NotifyDataSetChanged")
     private fun newCurrencyAdded(position: Int) {
         val newCurrencyListSize = currencyList.size + 1
