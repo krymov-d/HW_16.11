@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var currencyLayoutManager: LinearLayoutManager
+    private lateinit var rvCurrency: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +62,8 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         currencyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val rvCurrency: RecyclerView = findViewById(R.id.rv_currency)
+
+        rvCurrency = findViewById(R.id.rv_currency)
         rvCurrency.layoutManager = currencyLayoutManager
         rvCurrency.adapter = currencyAdapter
 
@@ -71,6 +75,28 @@ class MainActivity : AppCompatActivity() {
             )!!
         )
         rvCurrency.addItemDecoration(dividerItemDecoration)
+
+        swipeCurrency()
+    }
+
+    private fun swipeCurrency() {
+        val touchHelper =
+            ItemTouchHelper(object : SimpleCallback(UP or DOWN, LEFT or RIGHT) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    currencyAdapter.onMoveDrag(viewHolder.layoutPosition, target.layoutPosition)
+                    return true
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    currencyAdapter.onSwipeDelete(viewHolder.layoutPosition)
+                }
+
+            })
+        touchHelper.attachToRecyclerView(rvCurrency)
     }
 
     private fun fillCurrency() {
@@ -154,16 +180,6 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.usa_currency)
             )
         )
-        /*
-        val currentCurrencyList = currencyAdapter.getCurrencyList()
-        if (currencyList.size == currentCurrencyList.size) {
-            currencyAdapter.updateDataSet(currencyList)
-        }
-        else {
-            currencyAdapter.updateDataSet(currentCurrencyList)
-        }
-
-         */
         currencyAdapter.updateDataSet(currencyList)
     }
 }

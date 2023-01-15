@@ -11,6 +11,7 @@ class CurrencyAdapter(
     private val listener: BtnAddClickListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private val currencyList: MutableList<Currency> = mutableListOf()
 
     interface BtnAddClickListener {
@@ -64,11 +65,19 @@ class CurrencyAdapter(
         notifyDataSetChanged()
     }
 
-    /*
-    fun getCurrencyList(): MutableList<Currency> {
-        return currencyList
+    fun onMoveDrag(startPosition: Int, stopPosition: Int) {
+        val temporaryCurrency: Currency = currencyList[stopPosition]
+        currencyList[stopPosition] = currencyList[startPosition]
+        currencyList[startPosition] = temporaryCurrency
+        notifyItemMoved(startPosition, stopPosition)
     }
-     */
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun onSwipeDelete(position: Int) {
+        currencyList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, currencyList.size)
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun newCurrencyAdded(position: Int) {
