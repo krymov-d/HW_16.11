@@ -14,4 +14,10 @@
     <string name="rus_currency">Рубль</string>
     <string name="flag">flag</string>
     <string name="add">Добавить</string>
+    <string name="tb_convertor">Convertor</string>
+    <string name="menu_main">Menu Main</string>
+    <string name="menu_main_sort">Сортировать</string>
+    <string name="menu_main_reset">Сбросить</string>
+    <string name="menu_main_sort_alpha">Алфавитный порядок</string>
+    <string name="menu_main_sort_num">Числовой порядок</string>
 </resources>

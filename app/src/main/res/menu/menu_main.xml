@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main"
+        android:title="@string/menu_main_sort">
+        <menu>
+            <group
+                android:id="@+id/menu_main_sort"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_main_sort_alpha"
+                    android:checked="true"
+                    android:icon="@android:drawable/ic_menu_sort_alphabetically"
+                    android:title="@string/menu_main_sort_alpha" />
+                <item
+                    android:id="@+id/menu_main_sort_num"
+                    android:icon="@android:drawable/ic_menu_sort_by_size"
+                    android:title="@string/menu_main_sort_num" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_main_reset"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/menu_main_reset" />
+</menu>

@@ -1,6 +1,8 @@
 package kz.kd.hw_1611
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -33,6 +35,14 @@ class MainActivity : AppCompatActivity() {
                 firstCompletelyVisibleItem
             )
         }
+
+        setSupportActionBar(findViewById(R.id.tb_main))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

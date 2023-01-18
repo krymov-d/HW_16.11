@@ -10,6 +10,10 @@
 
     <color name="btn_background">#F5F5F5</color>
     <color name="btn_text_color">#1789DB</color>
+    <color name="btn_text_color_tint_1">#A2CFF0</color>
+    <color name="btn_text_color_tint_2">#52ACED</color>
+    <color name="btn_text_color_tint_3">#1727DB</color>
+    <color name="btn_text_color_tint_4">#E7F3FB</color>
 
     <color name="tv_text_color">#000000</color>
     <color name="tv_text_color_2">#808080</color>
