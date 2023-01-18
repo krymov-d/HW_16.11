@@ -24,7 +24,7 @@
             app:title="@string/tb_convertor"
             app:titleMarginStart="12dp"
             app:titleTextAppearance="@style/tb_title"
-            app:titleTextColor="@color/tv_text_color_2" />
+            app:titleTextColor="@color/btn_text_color" />
 
         <View
             android:id="@+id/v_border"

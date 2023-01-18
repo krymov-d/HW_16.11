@@ -12,7 +12,8 @@ class CurrencyAdapter(
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val currencyList: MutableList<Currency> = mutableListOf()
+    private var currencyList: MutableList<Currency> = mutableListOf()
+    private var currencyListCopy: MutableList<Currency> = mutableListOf()
 
     interface BtnAddClickListener {
         fun bntAddClicked()
@@ -62,6 +63,7 @@ class CurrencyAdapter(
     fun updateDataSet(newDataSet: List<Currency>) {
         currencyList.clear()
         currencyList.addAll(newDataSet)
+        reserveCopy(currencyList)
         notifyDataSetChanged()
     }
 
@@ -69,12 +71,14 @@ class CurrencyAdapter(
         val temporaryCurrency: Currency = currencyList[stopPosition]
         currencyList[stopPosition] = currencyList[startPosition]
         currencyList[startPosition] = temporaryCurrency
+        reserveCopy(currencyList)
         notifyItemMoved(startPosition, stopPosition)
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun onSwipeDelete(position: Int) {
         currencyList.removeAt(position)
+        reserveCopy(currencyList)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, currencyList.size)
     }
@@ -89,7 +93,33 @@ class CurrencyAdapter(
             currencyName = "Рубль"
         )
         currencyList.add(position, newCurrency)
+        reserveCopy(currencyList)
         notifyItemInserted(position)
         notifyItemRangeChanged(position, newCurrencyListSize)
+    }
+
+    private fun reserveCopy(copyDataSet: List<Currency>) {
+        currencyListCopy.clear()
+        currencyListCopy.addAll(copyDataSet)
+        currencyListCopy.sortBy { it.amount }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun reset() {
+        currencyList.clear()
+        currencyList.addAll(currencyListCopy)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun sortAlpha() {
+        currencyList.sortBy { it.country }
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun sortNum() {
+        currencyList.sortBy { it.amount }
+        notifyDataSetChanged()
     }
 }

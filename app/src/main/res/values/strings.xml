@@ -16,8 +16,8 @@
     <string name="add">Добавить</string>
     <string name="tb_convertor">Convertor</string>
     <string name="menu_main">Menu Main</string>
-    <string name="menu_main_sort">Сортировать</string>
-    <string name="menu_main_reset">Сбросить</string>
-    <string name="menu_main_sort_alpha">Алфавитный порядок</string>
-    <string name="menu_main_sort_num">Числовой порядок</string>
+    <string name="menu_main_sort">Сортировать по</string>
+    <string name="menu_main_reset">Сбросить сортировку</string>
+    <string name="menu_main_sort_alpha">Алфавиту</string>
+    <string name="menu_main_sort_num">Стоимости</string>
 </resources>

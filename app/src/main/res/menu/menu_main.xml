@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_main"
+        android:id="@+id/menu_main_sort"
         android:title="@string/menu_main_sort">
         <menu>
             <group
-                android:id="@+id/menu_main_sort"
+                android:id="@+id/menu_main_sort_group"
                 android:checkableBehavior="single">
                 <item
                     android:id="@+id/menu_main_sort_alpha"
-                    android:checked="true"
                     android:icon="@android:drawable/ic_menu_sort_alphabetically"
                     android:title="@string/menu_main_sort_alpha" />
                 <item

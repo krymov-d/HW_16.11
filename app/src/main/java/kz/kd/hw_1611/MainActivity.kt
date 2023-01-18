@@ -3,8 +3,10 @@ package kz.kd.hw_1611
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initToolBarMain()
         initCurrencyRecycler()
         fillCurrency()
 
@@ -35,14 +38,38 @@ class MainActivity : AppCompatActivity() {
                 firstCompletelyVisibleItem
             )
         }
+    }
 
-        setSupportActionBar(findViewById(R.id.tb_main))
+    private fun initToolBarMain() {
+        val tbMain: Toolbar = findViewById(R.id.tb_main)
+        tbMain.overflowIcon?.setTint(resources.getColor(R.color.btn_text_color))
+        setSupportActionBar(tbMain)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_main_reset -> {
+                currencyAdapter.reset()
+                true
+            }
+            R.id.menu_main_sort_alpha -> {
+                item.isChecked = !item.isChecked
+                currencyAdapter.sortAlpha()
+                true
+            }
+            R.id.menu_main_sort_num -> {
+                item.isChecked = !item.isChecked
+                currencyAdapter.sortNum()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -121,6 +148,7 @@ class MainActivity : AppCompatActivity() {
         )
         currencyList.add(
             Currency(
+                amount = "2",
                 flag = R.drawable.ic_usa,
                 country = getString(R.string.usa),
                 currencyName = getString(R.string.usa_currency)
@@ -142,6 +170,7 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.eu_currency)
             )
         )
+        /*
         currencyList.add(
             Currency(
                 amount = "5",
@@ -190,6 +219,7 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.usa_currency)
             )
         )
+         */
         currencyAdapter.updateDataSet(currencyList)
     }
 }
