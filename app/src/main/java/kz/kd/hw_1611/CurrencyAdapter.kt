@@ -14,6 +14,7 @@ class CurrencyAdapter(
 
     private var currencyList: MutableList<Currency> = mutableListOf()
     private var currencyListCopy: MutableList<Currency> = mutableListOf()
+    private var sortType: Int = 0
 
     interface BtnAddClickListener {
         fun bntAddClicked()
@@ -94,8 +95,16 @@ class CurrencyAdapter(
         )
         currencyList.add(position, newCurrency)
         reserveCopy(currencyList)
-        notifyItemInserted(position)
-        notifyItemRangeChanged(position, newCurrencyListSize)
+        when (sortType) {
+            1 -> currencyList.sortBy { it.country }
+            2 -> {
+                currencyList.sortBy { it.amount }
+                currencyList.reverse()
+            }
+        }
+        val newPosition = currencyList.indexOf(newCurrency)
+        notifyItemInserted(newPosition)
+        notifyItemRangeChanged(newPosition, newCurrencyListSize)
     }
 
     private fun reserveCopy(copyDataSet: List<Currency>) {
@@ -106,6 +115,7 @@ class CurrencyAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun reset() {
+        sortType = 0
         currencyList.clear()
         currencyList.addAll(currencyListCopy)
         notifyDataSetChanged()
@@ -113,13 +123,16 @@ class CurrencyAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun sortAlpha() {
+        sortType = 1
         currencyList.sortBy { it.country }
         notifyDataSetChanged()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun sortNum() {
+        sortType = 2
         currencyList.sortBy { it.amount }
+        currencyList.reverse()
         notifyDataSetChanged()
     }
 }
