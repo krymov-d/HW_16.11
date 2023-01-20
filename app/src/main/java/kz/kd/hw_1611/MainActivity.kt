@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var currencyAdapter: CurrencyAdapter
     private lateinit var currencyLayoutManager: LinearLayoutManager
     private lateinit var rvCurrency: RecyclerView
+    private lateinit var tbMain: Toolbar
+    private lateinit var tbDelete: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +45,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initToolBarMain() {
-        val tbMain: Toolbar = findViewById(R.id.tb_main)
+        tbMain = findViewById(R.id.tb_main)
+        tbDelete = findViewById(R.id.tb_delete)
+        tbMain.isVisible = true
+        tbDelete.isVisible = false
         tbMain.overflowIcon?.setTint(resources.getColor(R.color.btn_text_color))
         setSupportActionBar(tbMain)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_main, menu)
+        if (tbMain.isVisible) {
+            inflater.inflate(R.menu.menu_main, menu)
+        } else if (tbDelete.isVisible) {
+            inflater.inflate(R.menu.menu_delete, menu)
+        }
         return true
     }
 
@@ -56,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_main_reset -> {
                 currencyAdapter.reset()
+                invalidateOptionsMenu()
                 true
             }
             R.id.menu_main_sort_alpha -> {
@@ -66,6 +78,10 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_main_sort_num -> {
                 item.isChecked = !item.isChecked
                 currencyAdapter.sortNum()
+                true
+            }
+            R.id.menu_delete -> {
+                Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -125,6 +141,7 @@ class MainActivity : AppCompatActivity() {
                     target: RecyclerView.ViewHolder
                 ): Boolean {
                     currencyAdapter.onMoveDrag(viewHolder.layoutPosition, target.layoutPosition)
+                    tbDeleteChangeToMain()
                     return true
                 }
 
@@ -132,8 +149,24 @@ class MainActivity : AppCompatActivity() {
                     currencyAdapter.onSwipeDelete(viewHolder.layoutPosition)
                 }
 
+                override fun isLongPressDragEnabled(): Boolean {
+                    tbMainChangeToDelete()
+                    return super.isLongPressDragEnabled()
+                }
             })
         touchHelper.attachToRecyclerView(rvCurrency)
+    }
+
+    private fun tbMainChangeToDelete() {
+        tbMain.isVisible = false
+        tbDelete.isVisible = true
+        setSupportActionBar(tbDelete)
+    }
+
+    private fun tbDeleteChangeToMain() {
+        tbMain.isVisible = true
+        tbDelete.isVisible = false
+        setSupportActionBar(tbMain)
     }
 
     private fun fillCurrency() {
@@ -170,56 +203,6 @@ class MainActivity : AppCompatActivity() {
                 currencyName = getString(R.string.eu_currency)
             )
         )
-        /*
-        currencyList.add(
-            Currency(
-                amount = "5",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "6",
-                flag = R.drawable.ic_kz,
-                country = getString(R.string.kz),
-                currencyName = getString(R.string.kz_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "7",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "8",
-                flag = R.drawable.ic_tr,
-                country = getString(R.string.tr),
-                currencyName = getString(R.string.tr_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "9",
-                flag = R.drawable.ic_eu,
-                country = getString(R.string.eu),
-                currencyName = getString(R.string.eu_currency)
-            )
-        )
-        currencyList.add(
-            Currency(
-                amount = "10",
-                flag = R.drawable.ic_usa,
-                country = getString(R.string.usa),
-                currencyName = getString(R.string.usa_currency)
-            )
-        )
-         */
         currencyAdapter.updateDataSet(currencyList)
     }
 }

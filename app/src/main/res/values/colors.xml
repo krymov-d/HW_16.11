@@ -17,4 +17,6 @@
 
     <color name="tv_text_color">#000000</color>
     <color name="tv_text_color_2">#808080</color>
+    <color name="tv_text_color_3">#0B0A0A</color>
+    <color name="tb_background">#36787474</color>
 </resources>
