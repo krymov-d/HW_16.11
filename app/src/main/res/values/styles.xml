@@ -5,4 +5,20 @@
         <item name="android:textSize">22sp</item>
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
+
+    <style name="df_delete">
+        <item name="android:textColor">@color/tv_text_color</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:lineSpacingExtra">-1sp</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <style name="df_delete_btn">
+        <item name="android:background">@drawable/btn_df_delete_selector</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+    </style>
 </resources>

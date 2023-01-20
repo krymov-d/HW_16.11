@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_delete -> {
+                DFDelete().show(supportFragmentManager, null)
                 Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show()
                 true
             }
