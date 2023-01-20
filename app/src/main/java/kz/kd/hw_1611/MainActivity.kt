@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_delete -> {
                 DFDelete().show(supportFragmentManager, null)
-                Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -148,6 +147,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     currencyAdapter.onSwipeDelete(viewHolder.layoutPosition)
+                    tbDeleteChangeToMain()
                 }
 
                 override fun isLongPressDragEnabled(): Boolean {
