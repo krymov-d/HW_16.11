@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
@@ -88,6 +87,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        tbDeleteChangeToMain()
+        super.onBackPressed()
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         val firstVisibleItem = currencyLayoutManager.findFirstVisibleItemPosition()
         val firstCompletelyVisibleItem =
@@ -167,7 +171,6 @@ class MainActivity : AppCompatActivity() {
     private fun tbDeleteChangeToMain() {
         tbMain.isVisible = true
         tbDelete.isVisible = false
-        setSupportActionBar(tbMain)
     }
 
     private fun fillCurrency() {
